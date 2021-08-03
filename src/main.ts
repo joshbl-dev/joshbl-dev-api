@@ -6,7 +6,7 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 async function bootstrap() {
 	const version = process.env.npm_package_version;
 	const options = {
-		origin: "http://localhost:3000",
+		origin: process.env.BASE_URL,
 		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 		preflightContinue: false,
 		optionsSuccessStatus: 204,
