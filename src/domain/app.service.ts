@@ -1,8 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
+import { ImagesRepository } from "../data/repositories/Postgres/images.repository";
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
-  }
+	constructor(private imagesRepository: ImagesRepository) {}
+	getHello(): string {
+		return "Hello World!";
+	}
 }

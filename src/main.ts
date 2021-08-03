@@ -5,15 +5,7 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
 async function bootstrap() {
 	const version = process.env.npm_package_version;
-	const options = {
-		origin: process.env.BASE_URL,
-		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-		preflightContinue: false,
-		optionsSuccessStatus: 204,
-		credentials: true
-	};
 	const app = await NestFactory.create(AppModule);
-	app.enableCors(options);
 	app.use(json({ limit: "50mb" }));
 	app.use(urlencoded({ extended: true, limit: "50mb" }));
 	// app.useGlobalFilters()
@@ -22,7 +14,7 @@ async function bootstrap() {
 	const config = new DocumentBuilder()
 		.setTitle("joshbl.dev API")
 		.setDescription("joshbl.dev Documentation")
-		.setVersion("1.0")
+		.setVersion(version)
 		.addBearerAuth(
 			{ type: "http", scheme: "bearer", bearerFormat: "JWT" },
 			"access-token"
