@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
-import { AppController } from "./api/app.controller";
-import { AppService } from "./domain/app.service";
-import { PostgresRepositoryModule } from "./data/repositories/Postgres/postgresRepository.module";
 import { UtilsModule } from "./utils/utils.module";
+import { RepositoryModule } from "./data/repositories/repositoryModule";
+import { ApiModule } from "./api/api.module";
+import { DomainModule } from "./domain/domain.module";
 
 @Module({
 	imports: [
@@ -12,9 +12,9 @@ import { UtilsModule } from "./utils/utils.module";
 			isGlobal: true
 		}),
 		UtilsModule,
-		PostgresRepositoryModule
-	],
-	controllers: [AppController],
-	providers: [AppService]
+		RepositoryModule,
+		ApiModule,
+		DomainModule
+	]
 })
 export class AppModule {}
