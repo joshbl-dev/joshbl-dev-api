@@ -11,7 +11,7 @@ async function bootstrap() {
 	app.use(urlencoded({ extended: true, limit: "50mb" }));
 	// app.useGlobalFilters()
 	app.useGlobalPipes(new ValidationPipe());
-	app.setGlobalPrefix(`api/v${version}`);
+	app.setGlobalPrefix(`api`);
 
 	const config = new DocumentBuilder()
 		.setTitle("joshbl.dev API")
