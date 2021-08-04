@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from "@nestjs/common";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { AssetsService } from "../../domain/assets/assets.service";
-import { ImagesQueryDTO } from "./models/requests/ImagesQueryDTO";
+import { ImagesQueryDTO } from "./models/requests/ImagesQuery.dto";
 import { ImageResponseDTO } from "./models/responses/ImageResponse.dto";
 
 @ApiBearerAuth("access-token")

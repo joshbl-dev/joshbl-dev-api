@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { ImagesRepository } from "../../data/repositories/Postgres/images.repository";
-import { ImagesQueryDTO } from "../../api/assets/models/requests/ImagesQueryDTO";
+import { ImagesQueryDTO } from "../../api/assets/models/requests/ImagesQuery.dto";
 import { DEFAULT_AMOUNT, DEFAULT_OFFSET } from "../../utils/constants";
 import { Image } from "../../data/entities/Image";
 
