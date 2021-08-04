@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Config } from "../../../utils/Config";
-import { database } from "../../../utils/constants";
+import { DATABASE } from "../../../utils/constants";
 import knex, { Knex } from "knex";
 
 @Injectable()
@@ -14,7 +14,7 @@ export class Postgres {
 				user: config.postgresUsername,
 				password: config.postgresPassword,
 				host: config.postgresHostname,
-				database: database
+				database: DATABASE
 			},
 			pool: {
 				min: 0,

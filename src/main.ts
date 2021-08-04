@@ -2,6 +2,7 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { json, urlencoded } from "express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { ValidationPipe } from "@nestjs/common";
 
 async function bootstrap() {
 	const version = process.env.npm_package_version;
@@ -9,6 +10,7 @@ async function bootstrap() {
 	app.use(json({ limit: "50mb" }));
 	app.use(urlencoded({ extended: true, limit: "50mb" }));
 	// app.useGlobalFilters()
+	app.useGlobalPipes(new ValidationPipe());
 	app.setGlobalPrefix(`api/v${version}`);
 
 	const config = new DocumentBuilder()

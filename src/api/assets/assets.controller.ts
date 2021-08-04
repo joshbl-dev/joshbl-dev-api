@@ -1,6 +1,8 @@
-import { Body, Controller, Get, Post, ValidationPipe } from "@nestjs/common";
+import { Controller, Get, Query } from "@nestjs/common";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { AssetsService } from "../../domain/assets/assets.service";
+import { ImagesQueryDTO } from "./models/requests/ImagesQueryDTO";
+import { ImageResponseDTO } from "./models/responses/ImageResponse.dto";
 
 @ApiBearerAuth("access-token")
 @ApiTags("assets")
@@ -8,13 +10,10 @@ import { AssetsService } from "../../domain/assets/assets.service";
 export class AssetsController {
 	constructor(private readonly assetsService: AssetsService) {}
 
-	@Get()
-	getHello(): string {
-		return;
-	}
-
-	@Post()
-	postHello(@Body(new ValidationPipe()) test): string {
-		return;
+	@Get("/images")
+	async getImages(
+		@Query() imagesQueryDTO: ImagesQueryDTO
+	): Promise<ImageResponseDTO[]> {
+		return await this.assetsService.getImages(imagesQueryDTO);
 	}
 }
