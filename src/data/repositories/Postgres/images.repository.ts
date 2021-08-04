@@ -21,7 +21,7 @@ export class ImagesRepository {
 	async getImages(category?: ImageCategory): Promise<Image[]> {
 		this.queryBuilder.select();
 		if (category) {
-			this.queryBuilder.where(`category = '${category}'`);
+			this.queryBuilder.where("category", category);
 		}
 		return this.queryBuilder;
 	}

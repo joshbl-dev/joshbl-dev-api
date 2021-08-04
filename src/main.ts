@@ -10,6 +10,7 @@ async function bootstrap() {
 	app.use(json({ limit: "50mb" }));
 	app.use(urlencoded({ extended: true, limit: "50mb" }));
 	// app.useGlobalFilters()
+	app.enableCors();
 	app.useGlobalPipes(new ValidationPipe());
 	app.setGlobalPrefix(`api`);
 
