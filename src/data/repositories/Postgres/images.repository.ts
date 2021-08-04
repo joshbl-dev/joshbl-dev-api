@@ -18,12 +18,8 @@ export class ImagesRepository {
 		await this.queryBuilder.insert(image);
 	}
 
-	async getImageBatch(
-		offset: number,
-		amount: number,
-		category?: ImageCategory
-	): Promise<Image[]> {
-		this.queryBuilder.select().orderBy("id").offset(offset).limit(amount);
+	async getImages(category?: ImageCategory): Promise<Image[]> {
+		this.queryBuilder.select();
 		if (category) {
 			this.queryBuilder.where(`category = '${category}'`);
 		}
