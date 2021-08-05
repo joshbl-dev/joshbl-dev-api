@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common";
 import { ImagesRepository } from "./images.repository";
-import { Postgres } from "./Postgres";
+import { MariaDB } from "./MariaDB";
 
 @Module({
 	exports: [ImagesRepository],
-	providers: [ImagesRepository, Postgres]
+	providers: [ImagesRepository, MariaDB]
 })
-export class PostgresRepositoryModule {}
+export class MariaDBRepositoryModule {}

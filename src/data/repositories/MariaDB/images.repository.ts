@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Postgres } from "./Postgres";
+import { MariaDB } from "./MariaDB";
 import { Knex } from "knex";
 import { Image } from "../../entities/Image";
 import { ImageCategory } from "../../../utils/types";
@@ -10,8 +10,8 @@ export class ImagesRepository {
 	private readonly tableName: string = "images";
 	private readonly queryBuilder: QueryBuilder;
 
-	constructor(private postgres: Postgres) {
-		this.queryBuilder = postgres.knex<Image>(this.tableName);
+	constructor(private mariaDB: MariaDB) {
+		this.queryBuilder = mariaDB.knex<Image>(this.tableName);
 	}
 
 	async insertImage(image: Image) {

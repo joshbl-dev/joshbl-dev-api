@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { ImagesRepository } from "../../data/repositories/Postgres/images.repository";
+import { ImagesRepository } from "../../data/repositories/MariaDB/images.repository";
 import { ImagesQueryDTO } from "../../api/assets/models/requests/ImagesQuery.dto";
 import { Image } from "../../data/entities/Image";
 

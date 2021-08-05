@@ -4,16 +4,16 @@ import { DATABASE } from "../../../utils/constants";
 import knex, { Knex } from "knex";
 
 @Injectable()
-export class Postgres {
+export class MariaDB {
 	knex: Knex;
 
 	constructor(private config: Config) {
 		this.knex = knex({
-			client: "pg",
+			client: "mysql",
 			connection: {
-				user: config.postgresUsername,
-				password: config.postgresPassword,
-				host: config.postgresHostname,
+				user: config.mariaDBUsername,
+				password: config.mariaDBPassword,
+				host: config.mariaDBHostname,
 				database: DATABASE
 			},
 			pool: {

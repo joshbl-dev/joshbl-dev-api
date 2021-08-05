@@ -9,10 +9,10 @@ export class Config {
 	azureTenantId: string;
 	onedriveMainFolderId: string;
 	onedriveMemoriesFolderId: string;
-	postgresHostname: string;
-	postgresPort: string;
-	postgresUsername: string;
-	postgresPassword: string;
+	mariaDBHostname: string;
+	mariaDBPort: string;
+	mariaDBUsername: string;
+	mariaDBPassword: string;
 
 	constructor() {
 		this.nodeEnv = process.env.NODE_ENV;
@@ -22,9 +22,9 @@ export class Config {
 		this.azureTenantId = process.env.AZURE_TENANT_ID;
 		this.onedriveMainFolderId = process.env.ONEDRIVE_PHOTOS_FOLDER;
 		this.onedriveMemoriesFolderId = process.env.ONEDRIVE_MEMORIES_FOLDER;
-		this.postgresHostname = process.env.POSTGRES_HOSTNAME;
-		this.postgresPort = process.env.POSTGRES_PORT;
-		this.postgresUsername = process.env.POSTGRES_USERNAME;
-		this.postgresPassword = process.env.POSTGRES_PASSWORD;
+		this.mariaDBHostname = process.env.MARIADB_HOSTNAME;
+		this.mariaDBPort = process.env.MARIADB_PORT;
+		this.mariaDBUsername = process.env.MARIADB_USERNAME;
+		this.mariaDBPassword = process.env.MARIADB_PASSWORD;
 	}
 }

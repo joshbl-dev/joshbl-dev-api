@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
-import { PostgresRepositoryModule } from "./Postgres/postgresRepository.module";
+import { MariaDBRepositoryModule } from "./MariaDB/mariaDBRepository.module";
 
 @Module({
-	imports: [PostgresRepositoryModule],
-	exports: [PostgresRepositoryModule]
+	imports: [MariaDBRepositoryModule],
+	exports: [MariaDBRepositoryModule]
 })
 export class RepositoryModule {}
