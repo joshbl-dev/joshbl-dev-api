@@ -1,17 +1,12 @@
 import { Injectable } from "@nestjs/common";
-import { MariaDB } from "./MariaDB";
-import { Knex } from "knex";
 import { Image } from "../../entities/Image";
 import { ImageCategory } from "../../../utils/types";
-import QueryBuilder = Knex.QueryBuilder;
+import { MariaDBRepository } from "./mariaDB.repository";
 
 @Injectable()
-export class ImagesRepository {
-	private readonly tableName: string = "images";
-	private readonly queryBuilder: QueryBuilder;
-
-	constructor(private mariaDB: MariaDB) {
-		this.queryBuilder = mariaDB.knex<Image>(this.tableName);
+export class ImagesRepository extends MariaDBRepository {
+	constructor() {
+		super("images");
 	}
 
 	async insertImage(image: Image) {
