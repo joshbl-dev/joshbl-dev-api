@@ -9,7 +9,7 @@ async function bootstrap() {
 	const version = process.env.npm_package_version;
 
 	let httpsOptions = {};
-	if (fs.existsSync(process.env.HTTP_PRIVATE_KEY)) {
+	if (fs.existsSync(process.env.HTTPS_PRIVATE_KEY)) {
 		httpsOptions = {
 			key: fs.readFileSync(process.env.HTTPS_PRIVATE_KEY),
 			cert: fs.readFileSync(process.env.HTTPS_CERTIFICATE)
