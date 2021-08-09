@@ -3,10 +3,21 @@ import { AppModule } from "./app.module";
 import { json, urlencoded } from "express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { ValidationPipe } from "@nestjs/common";
+import * as fs from "fs";
 
 async function bootstrap() {
 	const version = process.env.npm_package_version;
-	const app = await NestFactory.create(AppModule);
+
+	let httpsOptions = {};
+	if (fs.existsSync(process.env.HTTP_PRIVATE_KEY)) {
+		httpsOptions = {
+			key: fs.readFileSync(process.env.HTTPS_PRIVATE_KEY),
+			cert: fs.readFileSync(process.env.HTTPS_CERTIFICATE)
+		};
+	}
+	const app = await NestFactory.create(AppModule, {
+		httpsOptions
+	});
 	app.use(json({ limit: "50mb" }));
 	app.use(urlencoded({ extended: true, limit: "50mb" }));
 	// app.useGlobalFilters()
