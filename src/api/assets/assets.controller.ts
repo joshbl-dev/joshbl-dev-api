@@ -21,6 +21,7 @@ export class AssetsController {
 		return await this.assetsService.getImages(imagesQueryDTO);
 	}
 
+	@UseGuards(JwtAuthGuard)
 	@Get("/quotes")
 	async getQuotes(
 		@Query() quotesQueryDTO: QuotesQueryDTO

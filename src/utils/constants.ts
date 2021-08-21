@@ -4,3 +4,4 @@ export const AZURE_LOGIN_URL = "https://login.microsoftonline.com/";
 export const AZURE_REGION = "westus2";
 export const DEFAULT_OFFSET = 1;
 export const DEFAULT_AMOUNT = 10;
+export const ADMIN_USERNAME = "joshbl";
