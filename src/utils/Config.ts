@@ -14,6 +14,7 @@ export class Config {
 	mariaDBPort: string;
 	mariaDBUsername: string;
 	mariaDBPassword: string;
+	jwtSecret: string;
 
 	constructor() {
 		this.nodeEnv = process.env.NODE_ENV;
@@ -28,5 +29,6 @@ export class Config {
 		this.mariaDBPort = process.env.MARIADB_PORT;
 		this.mariaDBUsername = process.env.MARIADB_USERNAME;
 		this.mariaDBPassword = process.env.MARIADB_PASSWORD;
+		this.jwtSecret = process.env.JWT_SECRET;
 	}
 }

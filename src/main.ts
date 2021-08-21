@@ -2,22 +2,25 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { json, urlencoded } from "express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-import { ValidationPipe } from "@nestjs/common";
+import { INestApplication, ValidationPipe } from "@nestjs/common";
 import * as fs from "fs";
 
 async function bootstrap() {
 	const version = process.env.npm_package_version;
 
-	let httpsOptions = {};
+	let app: INestApplication;
 	if (fs.existsSync(process.env.HTTPS_PRIVATE_KEY)) {
-		httpsOptions = {
+		const httpsOptions = {
 			key: fs.readFileSync(process.env.HTTPS_PRIVATE_KEY),
 			cert: fs.readFileSync(process.env.HTTPS_CERTIFICATE)
 		};
+		console.log("HTTP OPTIONS:", httpsOptions);
+		app = await NestFactory.create(AppModule, {
+			httpsOptions
+		});
+	} else {
+		app = await NestFactory.create(AppModule);
 	}
-	const app = await NestFactory.create(AppModule, {
-		httpsOptions
-	});
 	app.use(json({ limit: "50mb" }));
 	app.use(urlencoded({ extended: true, limit: "50mb" }));
 	// app.useGlobalFilters()
@@ -44,6 +47,7 @@ async function bootstrap() {
 	});
 
 	await app.listen(process.env.PORT);
+	console.log(`Application is running on: ${await app.getUrl()}`);
 }
 
 bootstrap();
