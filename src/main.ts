@@ -14,7 +14,6 @@ async function bootstrap() {
 			key: fs.readFileSync(process.env.HTTPS_PRIVATE_KEY),
 			cert: fs.readFileSync(process.env.HTTPS_CERTIFICATE)
 		};
-		console.log("HTTP OPTIONS:", httpsOptions);
 		app = await NestFactory.create(AppModule, {
 			httpsOptions
 		});
