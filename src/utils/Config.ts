@@ -10,6 +10,7 @@ export class Config {
 	onedriveMainFolderId: string;
 	onedriveMemoriesFolderId: string;
 	mariaDBHostname: string;
+	mariaDB: string;
 	mariaDBPort: string;
 	mariaDBUsername: string;
 	mariaDBPassword: string;
@@ -23,6 +24,7 @@ export class Config {
 		this.onedriveMainFolderId = process.env.ONEDRIVE_PHOTOS_FOLDER;
 		this.onedriveMemoriesFolderId = process.env.ONEDRIVE_MEMORIES_FOLDER;
 		this.mariaDBHostname = process.env.MARIADB_HOSTNAME;
+		this.mariaDB = process.env.MARIADB;
 		this.mariaDBPort = process.env.MARIADB_PORT;
 		this.mariaDBUsername = process.env.MARIADB_USERNAME;
 		this.mariaDBPassword = process.env.MARIADB_PASSWORD;
