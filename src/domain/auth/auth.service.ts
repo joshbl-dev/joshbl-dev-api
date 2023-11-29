@@ -13,6 +13,7 @@ export class AuthService {
 	constructor(@Inject(REQUEST) private request: Request) {}
 
 	validateAdmin() {
+		console.log("Validating admin...");
 		if ((<User>this.request.user).username !== "joshbl") {
 			throw new UnauthorizedException("Admin credentials required!");
 		}
