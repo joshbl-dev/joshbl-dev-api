@@ -50,6 +50,14 @@ async function bootstrap() {
 
 	await app.listen(port);
 
+	const address = app.getHttpServer().address().address;
+
+	console.log(
+		`Listening at http://${
+			address === "::" ? "localhost" : address
+		}:${port}/api`
+	);
+
 	const dnsService = app.get(DnsService);
 
 	await dnsService.startNgrok(port);
