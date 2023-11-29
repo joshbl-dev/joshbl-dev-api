@@ -9,6 +9,7 @@ export class AutomationsService {
 
 	startAlienware() {
 		this.authService.validateAdmin();
+		console.log("Starting Alienware...");
 		exec(`sudo etherwake -i eth0 ${this.config.alienwareMac}`);
 	}
 }

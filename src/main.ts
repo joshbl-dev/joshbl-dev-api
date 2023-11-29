@@ -4,6 +4,7 @@ import { json, urlencoded } from "express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { INestApplication, ValidationPipe } from "@nestjs/common";
 import * as fs from "fs";
+import { DnsService } from "./domain/dns/dns.service";
 
 async function bootstrap() {
 	const version = process.env.npm_package_version;
@@ -45,7 +46,13 @@ async function bootstrap() {
 		}
 	});
 
-	await app.listen(process.env.PORT);
+	const port = Number(process.env.PORT) || 3001;
+
+	await app.listen(port);
+
+	const dnsService = app.get(DnsService);
+
+	await dnsService.startNgrok(port);
 }
 
 bootstrap();
