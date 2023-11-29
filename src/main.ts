@@ -58,9 +58,11 @@ async function bootstrap() {
 		}:${port}/api`
 	);
 
-	const dnsService = app.get(DnsService);
+	if (process.env.NODE_ENV === "ngrok") {
+		const dnsService = app.get(DnsService);
 
-	await dnsService.startNgrok(port);
+		await dnsService.startNgrok(port);
+	}
 }
 
 bootstrap();
