@@ -15,6 +15,7 @@
     "start:prod": "SET NODE_ENV=prod&& nest start",
     "start:rasp": "NODE_ENV=prod nest start --watch",
     "start:mac": "export NODE_ENV=prod && nest start --watch",
+    "start:ngrok": "NODE_ENV=ngrok nest start --watch",
     "doc": "npx compodoc -p tsconfig.json -n \"joshbl.dev Code Documentation\" -s -w --hideGenerator",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",

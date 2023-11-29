@@ -7,7 +7,7 @@ export class DnsService {
 	constructor(private config: Config) {}
 
 	async startNgrok(port: number) {
-		const command = `ngrok tunnel --label edge=${this.config.ngrokEdge} http://localhost:${port} --authtoken ${this.config.ngrokToken}`;
+		const command = `ngrok tunnel --label edge=${this.config.ngrokEdge} https://localhost:${port} --authtoken ${this.config.ngrokToken}`;
 		exec(command, (error, stdout, stderr) => {
 			if (error) {
 				console.error(`error: ${error.message}`);
