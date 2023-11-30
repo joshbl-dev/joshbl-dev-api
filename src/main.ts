@@ -2,11 +2,12 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { json, urlencoded } from "express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-import { INestApplication, ValidationPipe } from "@nestjs/common";
+import { INestApplication, Logger, ValidationPipe } from "@nestjs/common";
 import * as fs from "fs";
 import { DnsService } from "./domain/dns/dns.service";
 
 async function bootstrap() {
+	const logger = new Logger("Bootstrap");
 	const version = process.env.npm_package_version;
 
 	let app: INestApplication;
@@ -19,11 +20,9 @@ async function bootstrap() {
 		app = await NestFactory.create(AppModule, {
 			httpsOptions
 		});
-		console.log("HTTPS enabled");
 		httpsEnabled = true;
 	} else {
 		app = await NestFactory.create(AppModule);
-		console.log("HTTPS disabled");
 	}
 	app.use(json({ limit: "50mb" }));
 	app.use(urlencoded({ extended: true, limit: "50mb" }));
@@ -56,7 +55,7 @@ async function bootstrap() {
 
 	const address = app.getHttpServer().address().address;
 
-	console.log(
+	logger.log(
 		`Listening at ${httpsEnabled ? "https" : "http"}://${
 			address === "::" ? "localhost" : address
 		}:${port}/api`

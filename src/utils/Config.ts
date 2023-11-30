@@ -18,6 +18,7 @@ export class Config {
 	alienwareMac: string;
 	ngrokToken: string;
 	ngrokEdge: string;
+	githubSecret: string;
 
 	constructor() {
 		this.nodeEnv = process.env.NODE_ENV;
@@ -36,5 +37,6 @@ export class Config {
 		this.alienwareMac = process.env.ALIENWARE_MAC;
 		this.ngrokToken = process.env.NGROK_TOKEN;
 		this.ngrokEdge = process.env.NGROK_EDGE;
+		this.githubSecret = process.env.GITHUB_SECRET;
 	}
 }
