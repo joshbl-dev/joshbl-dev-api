@@ -4,7 +4,7 @@ import {
 	Injectable,
 	Logger
 } from "@nestjs/common";
-import { createHmac } from "crypto";
+import { createHmac, timingSafeEqual } from "crypto";
 import { Config } from "../../../utils/Config";
 
 @Injectable()
@@ -23,10 +23,15 @@ export class GithubGuard implements CanActivate {
 
 		const expectedSignature = `sha256=${hmac}`;
 
-		this.logger.log(
-			"Github Guard result: " + (signature === expectedSignature)
+		const isSignatureMatch = timingSafeEqual(
+			Buffer.from(expectedSignature, "ascii"),
+			Buffer.from(signature, "ascii")
 		);
 
-		return signature === expectedSignature;
+		this.logger.log(
+			"Github Guard " + (isSignatureMatch ? "passed" : "failed")
+		);
+
+		return isSignatureMatch;
 	}
 }
