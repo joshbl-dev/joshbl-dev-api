@@ -15,6 +15,7 @@ export class HooksController {
 	@Post("/github")
 	async getGithubData(data) {
 		this.logger.log("Received Github hook...");
+		
 		return this.hooksService.processGithub(data);
 	}
 }
