@@ -1,9 +1,7 @@
 export enum ImageCategory {
-	MEMORY
+	NONE
 }
 
 export enum QuoteCategory {
-	MEMORY,
-	FRATERNITY,
-	ANNIVERSARY_MESSAGE
+	NONE
 }
