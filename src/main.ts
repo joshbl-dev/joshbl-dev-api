@@ -29,7 +29,6 @@ async function bootstrap() {
 	// app.useGlobalFilters()
 	app.enableCors();
 	app.useGlobalPipes(new ValidationPipe());
-	app.setGlobalPrefix(`api`);
 
 	const config = new DocumentBuilder()
 		.setTitle("joshbl.dev API")
@@ -58,7 +57,7 @@ async function bootstrap() {
 	logger.log(
 		`Listening at ${httpsEnabled ? "https" : "http"}://${
 			address === "::" ? "localhost" : address
-		}:${port}/api`
+		}:${port}`
 	);
 
 	if (process.env.NODE_ENV === "ngrok") {
