@@ -10,6 +10,7 @@ async function bootstrap() {
 	const version = process.env.npm_package_version;
 
 	let app: INestApplication;
+	let httpsEnabled = false;
 	if (fs.existsSync(process.env.HTTPS_PRIVATE_KEY)) {
 		const httpsOptions = {
 			key: fs.readFileSync(process.env.HTTPS_PRIVATE_KEY),
@@ -18,8 +19,11 @@ async function bootstrap() {
 		app = await NestFactory.create(AppModule, {
 			httpsOptions
 		});
+		console.log("HTTPS enabled");
+		httpsEnabled = true;
 	} else {
 		app = await NestFactory.create(AppModule);
+		console.log("HTTPS disabled");
 	}
 	app.use(json({ limit: "50mb" }));
 	app.use(urlencoded({ extended: true, limit: "50mb" }));
@@ -53,7 +57,7 @@ async function bootstrap() {
 	const address = app.getHttpServer().address().address;
 
 	console.log(
-		`Listening at http://${
+		`Listening at ${httpsEnabled ? "https" : "http"}://${
 			address === "::" ? "localhost" : address
 		}:${port}/api`
 	);
