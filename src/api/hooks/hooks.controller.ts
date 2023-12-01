@@ -14,9 +14,7 @@ export class HooksController {
 	@UseGuards(GithubGuard)
 	@Post("/github")
 	async getGithubData(@Body() data: GithubDto) {
-		this.logger.log("Received Github hook ");
-		this.logger.log(data);
-
+		this.logger.log("Received Github hook");
 		return this.hooksService.processGithub(data);
 	}
 }

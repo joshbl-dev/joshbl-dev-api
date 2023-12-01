@@ -9,8 +9,6 @@ export class HooksService {
 	constructor(private config: Config) {}
 
 	async processGithub(data: GithubPayload) {
-		this.logger.log("Processing Github hook...");
-		this.logger.log(data);
 		this.mainUpdated(data);
 	}
 
@@ -24,7 +22,7 @@ export class HooksService {
 		this.logger.log("Pulling changes to project...");
 		exec(
 			`eval "$(ssh-agent -s)" && ssh-add ${this.config.deployKeyPath} && git pull`,
-			(error, stdout, stderr) => {
+			(error, stdout) => {
 				if (error) {
 					this.logger.error(`Error pulling changes: ${error}`);
 					return;

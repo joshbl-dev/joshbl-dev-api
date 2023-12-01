@@ -16,6 +16,12 @@ export class GithubGuard implements CanActivate {
 	canActivate(context: ExecutionContext): boolean {
 		const request = context.switchToHttp().getRequest();
 		const signature = request.headers["x-hub-signature-256"];
+
+		if (!signature) {
+			this.logger.error(`${GithubGuard.name} failed - no signature`);
+			return false;
+		}
+
 		const payload = JSON.stringify(request.body);
 		const secret = this.config.githubSecret;
 
