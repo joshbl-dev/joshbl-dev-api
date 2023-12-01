@@ -1,11 +1,12 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { exec } from "child_process";
+import { Config } from "../../utils/Config";
 
 @Injectable()
 export class HooksService {
 	private readonly logger = new Logger(HooksService.name);
 
-	constructor() {}
+	constructor(private config: Config) {}
 
 	async processGithub(data: GithubPayload) {
 		this.logger.log("Processing Github hook...");
@@ -22,7 +23,7 @@ export class HooksService {
 	private pullChanges() {
 		this.logger.log("Pulling changes to project...");
 		exec(
-			`eval "$(ssh-agent -s)" && ssh-add ~/.ssh/deploy_key && git pull`,
+			`eval "$(ssh-agent -s)" && ssh-add ${this.config.deployKeyPath} && git pull`,
 			(error, stdout, stderr) => {
 				if (error) {
 					this.logger.error(`Error pulling changes: ${error}`);
