@@ -1,3 +1,3 @@
-interface GithubPayload {
+export interface GithubPayload {
 	ref: string;
 }

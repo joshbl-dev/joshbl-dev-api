@@ -1,6 +1,7 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { exec } from "child_process";
 import { Config } from "../../utils/Config";
+import { GithubPayload } from "./types/GithubPayload";
 
 @Injectable()
 export class HooksService {
