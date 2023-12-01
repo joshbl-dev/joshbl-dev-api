@@ -7,7 +7,9 @@ export class JwtAuthGuard extends AuthGuard("jwt") {
 
 	canActivate(context) {
 		const result = super.canActivate(context);
-		this.logger.log("JwtAuthGuard " + (result ? "passed" : "failed"));
+		this.logger.log(
+			`${JwtAuthGuard.name} ` + (result ? "passed" : "failed")
+		);
 		return result;
 	}
 }

@@ -29,7 +29,7 @@ export class GithubGuard implements CanActivate {
 		);
 
 		this.logger.log(
-			"Github Guard " + (isSignatureMatch ? "passed" : "failed")
+			`${GithubGuard.name} ` + (isSignatureMatch ? "passed" : "failed")
 		);
 
 		return isSignatureMatch;

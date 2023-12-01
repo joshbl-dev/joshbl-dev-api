@@ -19,6 +19,7 @@ export class Config {
 	ngrokToken: string;
 	ngrokEdge: string;
 	githubSecret: string;
+	admin: string;
 
 	constructor() {
 		this.nodeEnv = process.env.NODE_ENV;
@@ -38,5 +39,6 @@ export class Config {
 		this.ngrokToken = process.env.NGROK_TOKEN;
 		this.ngrokEdge = process.env.NGROK_EDGE;
 		this.githubSecret = process.env.GITHUB_SECRET;
+		this.admin = process.env.ADMIN;
 	}
 }

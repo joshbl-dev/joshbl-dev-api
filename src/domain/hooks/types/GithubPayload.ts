@@ -1,0 +1,3 @@
+interface GithubPayload {
+	ref: string;
+}
