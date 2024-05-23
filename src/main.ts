@@ -9,6 +9,7 @@ import { DnsService } from "./domain/dns/dns.service";
 async function bootstrap() {
 	const logger = new Logger("Bootstrap");
 	const version = process.env.npm_package_version;
+	const env = process.env.NODE_ENV;
 
 	let app: INestApplication;
 	let httpsEnabled = false;
@@ -30,23 +31,25 @@ async function bootstrap() {
 	app.enableCors();
 	app.useGlobalPipes(new ValidationPipe());
 
-	const config = new DocumentBuilder()
-		.setTitle("joshbl.dev API")
-		.setDescription("joshbl.dev Documentation")
-		.setVersion(version)
-		.addBearerAuth(
-			{ type: "http", scheme: "bearer", bearerFormat: "JWT" },
-			"access-token"
-		)
-		.build();
-	const document = SwaggerModule.createDocument(app, config);
-	SwaggerModule.setup("api", app, document, {
-		customSiteTitle: "joshbl.dev API",
-		swaggerOptions: {
-			tagsSorter: "alpha",
-			operationsSorter: "method"
-		}
-	});
+	if (env !== "prod") {
+		const config = new DocumentBuilder()
+			.setTitle("joshbl.dev API")
+			.setDescription("joshbl.dev Documentation")
+			.setVersion(version)
+			.addBearerAuth(
+				{ type: "http", scheme: "bearer", bearerFormat: "JWT" },
+				"access-token"
+			)
+			.build();
+		const document = SwaggerModule.createDocument(app, config);
+		SwaggerModule.setup("api", app, document, {
+			customSiteTitle: "joshbl.dev API",
+			swaggerOptions: {
+				tagsSorter: "alpha",
+				operationsSorter: "method"
+			}
+		});
+	}
 
 	const port = Number(process.env.PORT) || 3001;
 

@@ -4,6 +4,6 @@ import { AutomationsAPIModule } from "./automations/automationsAPI.module";
 import { HooksAPIModule } from "./hooks/hooksAPI.module";
 
 @Module({
-	imports: [AssetsAPIModule, AutomationsAPIModule, HooksAPIModule]
+	imports: [AutomationsAPIModule, HooksAPIModule]
 })
 export class ApiModule {}
