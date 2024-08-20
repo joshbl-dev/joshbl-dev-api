@@ -22,7 +22,7 @@ export class HooksService {
 	private pullChanges() {
 		this.logger.log("Pulling changes to project...");
 		exec(
-			`sudo -u ${this.config.admin} bash -c 'eval "$(ssh-agent -s)" && ssh-add ${this.config.deployKeyPath} && git pull'`,
+			`sudo -u ${this.config.serverUser} bash -c 'eval "$(ssh-agent -s)" && ssh-add ${this.config.deployKeyPath} && git pull'`,
 			(error, stdout) => {
 				if (error) {
 					this.logger.error(`Error pulling changes: ${error}`);

@@ -20,7 +20,8 @@ export class Config {
 	ngrokEdge: string;
 	githubSecret: string;
 	admin: string;
-	deployKeyPath;
+	serverUser: string;
+	deployKeyPath: string;
 
 	constructor() {
 		this.nodeEnv = process.env.NODE_ENV;
@@ -41,6 +42,7 @@ export class Config {
 		this.ngrokEdge = process.env.NGROK_EDGE;
 		this.githubSecret = process.env.GITHUB_SECRET;
 		this.admin = process.env.ADMIN;
+		this.serverUser = process.env.SERVER_USER;
 		this.deployKeyPath = process.env.DEPLOY_KEY_PATH;
 	}
 }
