@@ -40,4 +40,3 @@ $ yarn
 # production mode
 $ sudo yarn start:rasp
 ```
-
