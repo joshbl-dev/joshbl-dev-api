@@ -28,6 +28,47 @@
 [Nest](https://github.com/nestjs/nest) framework TypeScript backend for
 api.joshbl.dev
 
+# Setup
+
+## Pre-requisites
+
+- NVM
+- Node.js
+- Yarn
+- Etherwake
+- Git
+
+## Systemd Service
+
+To set up automatic restarts and logging, create a systemd service file.
+
+```bash
+sudo nano /etc/systemd/system/joshbl-api.service
+```
+
+```
+[Unit]
+Description=Joshbl API Service
+RequiresMountsFor=/home/joshu
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/home/<user>/<project_location>
+User=<user>
+Group=<user>
+ExecStart=/usr/bin/sudo yarn start:rasp
+
+Restart=always
+RestartSec=10
+[Install]
+WantedBy=multi-user.target
+```
+
+Interact with the service with
+`sudo systemctl <status/start/stop/restart> joshbl-api.service`
+View the logs with `sudo journalctl -u joshbl-api.service -f`
+
 ## Installation
 
 ```bash
