@@ -7,11 +7,12 @@ import { AuthService } from "../auth/auth.service";
 export class AutomationsService {
 	private readonly logger = new Logger(AutomationsService.name);
 
-	constructor(private config: Config, private authService: AuthService) {}
+	constructor(private config: Config, private authService: AuthService) {
+	}
 
-	startAlienware() {
+	startPC() {
 		this.authService.validateAdmin();
-		this.logger.log("Starting Alienware");
-		exec(`sudo etherwake -i eth0 ${this.config.alienwareMac}`);
+		this.logger.log("Starting PC");
+		exec(`sudo etherwake -i eth0 ${this.config.etherwakeMac}`);
 	}
 }

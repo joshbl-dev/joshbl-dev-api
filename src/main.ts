@@ -4,7 +4,6 @@ import { json, urlencoded } from "express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { INestApplication, Logger, ValidationPipe } from "@nestjs/common";
 import * as fs from "fs";
-import { DnsService } from "./domain/dns/dns.service";
 
 async function bootstrap() {
 	const logger = new Logger("Bootstrap");
@@ -62,12 +61,6 @@ async function bootstrap() {
 			address === "::" ? "localhost" : address
 		}:${port}`
 	);
-
-	if (process.env.NODE_ENV === "ngrok") {
-		const dnsService = app.get(DnsService);
-
-		await dnsService.startNgrok(port);
-	}
 }
 
 bootstrap();

@@ -7,11 +7,12 @@ import { JwtAuthGuard } from "../../domain/auth/guards/jwt.guard";
 @ApiTags("automations")
 @Controller("automations")
 export class AutomationsController {
-	constructor(private readonly automationsService: AutomationsService) {}
+	constructor(private readonly automationsService: AutomationsService) {
+	}
 
 	@UseGuards(JwtAuthGuard)
-	@Post("/alienware")
-	async startAlienware() {
-		return this.automationsService.startAlienware();
+	@Post("/pc")
+	async startPC() {
+		return this.automationsService.startPC();
 	}
 }
